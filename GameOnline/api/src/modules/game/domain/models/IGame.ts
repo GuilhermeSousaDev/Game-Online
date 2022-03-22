@@ -6,6 +6,7 @@ export interface IGame {
     posY: number;
     posLeft: number;
     posRight: number;
+    userId: ObjectID,
     createdAt: Date;
     updatedAt: Date;
 }
