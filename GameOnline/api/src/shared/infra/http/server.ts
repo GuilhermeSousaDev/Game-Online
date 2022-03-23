@@ -4,6 +4,7 @@ import express, { Request, Response, NextFunction } from "express";
 import cors from "cors";
 import { errors } from "celebrate";
 import AppError from "../../errors/AppError";
+import limiter from './middlewares/limiter';
 import router from "./routes/index.routes";
 
 import "@shared/infra/typeorm";
@@ -22,6 +23,7 @@ class App {
 
   public middlewares() {
     this.app.use(cors());
+    this.app.use(limiter);
   }
 
   public routes() {

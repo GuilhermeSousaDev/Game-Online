@@ -1,11 +1,12 @@
 import { Router } from "express";
 import { celebrate, Joi, Segments } from "celebrate";
 import UserController from "../controllers/UserController";
+import isAuthenticated from "@shared/infra/http/middlewares/isAuthenticated";
 
 const userRouter = Router();
 const userController = new UserController();
 
-userRouter.get("/", userController.index);
+userRouter.get("/", isAuthenticated, userController.index);
 
 userRouter.get(
   "/:id",
@@ -36,7 +37,7 @@ userRouter.delete(
       id: Joi.string().required(),
     },
   }),
-  userController.delete,
+  userController.delete
 );
 
 export default userRouter;

@@ -1,3 +1,4 @@
+import isAuthenticated from "@shared/infra/http/middlewares/isAuthenticated";
 import { celebrate, Joi, Segments } from "celebrate";
 import { Router } from "express";
 import GameController from "../controllers/GameController";
@@ -7,6 +8,7 @@ const gameController = new GameController();
 
 gameRouter.post(
   "/",
+  isAuthenticated,
   celebrate({
     [Segments.BODY]: {
       posLeft: Joi.number().required(),
@@ -16,7 +18,7 @@ gameRouter.post(
       userId: Joi.string().required(),
     },
   }),
-  gameController.create,
+  gameController.create
 );
 
 gameRouter.put(
@@ -30,7 +32,7 @@ gameRouter.put(
       posY: Joi.number().required(),
     },
   }),
-  gameController.update,
+  gameController.update
 );
 
 export default gameRouter;
