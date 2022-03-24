@@ -6,6 +6,8 @@ import GameController from "../controllers/GameController";
 const gameRouter = Router();
 const gameController = new GameController();
 
+gameRouter.get("/", gameController.index);
+
 gameRouter.post(
   "/",
   isAuthenticated,
@@ -34,5 +36,7 @@ gameRouter.put(
   }),
   gameController.update
 );
+
+gameRouter.delete("/", gameController.delete);
 
 export default gameRouter;
