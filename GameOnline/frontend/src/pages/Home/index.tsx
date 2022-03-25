@@ -1,12 +1,12 @@
-import React, { FC } from 'react';
-import { Container } from './style';
+import React, { FC } from "react";
+import { Button, Container } from "./style";
 
 const Home: FC = () => {
   return (
     <Container>
-      <h1>Home</h1>
+      <Button><h4>Play</h4></Button>
     </Container>
   );
-}
+};
 
 export default Home;
