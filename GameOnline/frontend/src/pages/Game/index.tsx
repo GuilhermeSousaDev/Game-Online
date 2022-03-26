@@ -6,6 +6,7 @@ const Game: FC = () => {
     <Container>
       <GameContainer>
         <Player />
+        {localStorage.getItem('nickname')}
       </GameContainer>
     </Container>
   );
