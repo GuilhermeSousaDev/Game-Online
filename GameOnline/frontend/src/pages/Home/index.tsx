@@ -4,7 +4,8 @@ import { Button, Container } from "./style";
 const Home: FC = () => {
   return (
     <Container>
-      <Button><h4>Play</h4></Button>
+      <h2>Game Online</h2>
+      <Button>Play</Button>
     </Container>
   );
 };
