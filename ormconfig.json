@@ -1,0 +1,18 @@
+{
+   "type": "mongodb",
+   "database": "api-game",
+   "url": "mongodb+srv://guilherme:guilherme3210@cluster0.pwxda.mongodb.net/Cluster0?retryWrites=true&w=majority",
+   "synchronize": true,
+   "logging": false,
+   "useUnifiedTopology": true,
+   "entities": [
+      "src/modules/**/infra/typeorm/entities/*.ts"
+   ],
+   "subscribers": [
+      "src/subscriber/**/*.ts"
+   ],
+   "cli": {
+      "entitiesDir": "src/modules/**/infra/typeorm/entities",
+      "subscribersDir": "src/subscriber"
+   }
+}
