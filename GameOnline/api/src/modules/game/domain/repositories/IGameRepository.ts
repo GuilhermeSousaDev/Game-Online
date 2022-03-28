@@ -8,5 +8,4 @@ export interface IGameRepository {
   create(data: ICreatePlayer): Promise<IGame>;
   find(): Promise<IGame[]>;
   findById(id: ObjectID): Promise<IGame>;
-  findUserById(userId: ObjectID): Promise<IGame>;
 }

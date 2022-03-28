@@ -15,16 +15,16 @@ export default class GameController {
   }
 
   public async create(req: Request, res: Response): Promise<Response> {
-    const { posLeft, posRight, posX, posY, userId } = req.body;
-
+    const { posLeft, posRight, posX, posY, name } = req.body;
+    
     const createPlayer = container.resolve(CreatePlayerService);
 
     const player = await createPlayer.execute({
       posLeft,
       posRight,
       posX,
-      posY,
-      userId,
+      posY, 
+      name,
     });
 
     return res.json(player);

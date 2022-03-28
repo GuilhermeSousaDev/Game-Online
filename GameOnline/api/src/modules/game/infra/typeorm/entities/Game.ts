@@ -25,7 +25,7 @@ export default class Game {
   posRight: number;
 
   @Column()
-  userId: ObjectID;
+  name: string;
 
   @CreateDateColumn()
   createdAt: Date;

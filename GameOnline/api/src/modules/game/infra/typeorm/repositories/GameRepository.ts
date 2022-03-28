@@ -3,7 +3,6 @@ import Game from "../entities/Game";
 import { IGame } from "@modules/game/domain/models/IGame";
 import { IGameRepository } from "@modules/game/domain/repositories/IGameRepository";
 import { ICreatePlayer } from "@modules/game/domain/models/ICreatePlayer";
-import { IUpdatePosition } from "@modules/game/domain/models/IUpdatePosition";
 
 export default class GameRepository implements IGameRepository {
   private ormRepository: Repository<Game>;
@@ -30,13 +29,5 @@ export default class GameRepository implements IGameRepository {
 
   public async findById(id: ObjectID): Promise<IGame> {
     return this.ormRepository.findOne(id);
-  }
-
-  public async findUserById(userId: ObjectID): Promise<IGame> {
-    return this.ormRepository.findOne({
-      where: {
-        userId,
-      },
-    });
   }
 }

@@ -1,4 +1,3 @@
-import AppError from "@shared/errors/AppError";
 import { inject, injectable } from "tsyringe";
 import { ICreatePlayer } from "../domain/models/ICreatePlayer";
 import { IGame } from "../domain/models/IGame";
@@ -16,20 +15,14 @@ export default class CreatePlayerService {
     posRight,
     posX,
     posY,
-    userId,
+    name,
   }: ICreatePlayer): Promise<IGame> {
-    const userExists = await this.gameRepository.findUserById(userId);
-
-    if (userExists) {
-      throw new AppError("This User already exists");
-    }
-
     const player = await this.gameRepository.create({
       posLeft,
       posRight,
       posX,
       posY,
-      userId,
+      name,
     });
 
     await this.gameRepository.save(player);

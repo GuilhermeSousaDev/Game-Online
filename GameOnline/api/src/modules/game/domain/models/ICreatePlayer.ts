@@ -1,7 +1,5 @@
-import { ObjectID } from "typeorm";
-
 export interface ICreatePlayer {
-  userId: ObjectID;
+  name: string;
   posX: number;
   posY: number;
   posLeft: number;
