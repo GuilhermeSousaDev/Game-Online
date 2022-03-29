@@ -13,10 +13,3 @@ export const GameContainer = styled.div`
   height: 600px;
   border: 2px solid black;
 `;
-
-export const Player = styled.div`
-  width: 100px;
-  height: 100px;
-  background-color: green;
-  border: 2px solid black;
-`;
