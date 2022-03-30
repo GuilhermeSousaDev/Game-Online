@@ -1,42 +1,27 @@
 import React, { FC, useEffect, useState } from "react";
 import Player from "../../components/Player";
-import { IPosition } from "../../interfaces/IPosition";
+import { IPlayers } from "../../interfaces/IPlayers";
 import api from "../../services/Axios";
 import { Container, GameContainer } from "./style";
 
 const Game: FC = () => {
-  const [pos, setPos] = useState<IPosition & { name: string | null }>();
+  const [players, setPlayers] = useState<IPlayers[]>();
 
   useEffect(() => {
-    if (!pos) {
-      setPos({
-        posLeft: Math.floor(Math.random() * 600),
-        posRight: Math.floor(Math.random() * 600),
-        posX: Math.floor(Math.random() * 600),
-        posY: Math.floor(Math.random() * 600),
-        name: localStorage.getItem('nickname'),
-      });
+    (async () => {
+      if (!players) {
+        const { data } = await api.get("game");
 
-      (async () => {
-        const { data } = await api.post('game', pos);
-
-        console.log(data);
-      })();
-    }
-  }, [pos]);
+        setPlayers(data);
+      }
+    })();
+  }, [players]);
 
   return (
     <Container>
       <GameContainer>
-          { pos? 
-            <Player
-              posLeft={pos?.posLeft}
-              posRight={pos?.posRight}
-              posX={pos?.posX}
-              posY={pos?.posY}
-            /> : '' 
-          }
-        {localStorage.getItem('nickname')}
+        {players ? players.map((_) => <Player />) : ""}
+        {localStorage.getItem("nickname")}
       </GameContainer>
     </Container>
   );
