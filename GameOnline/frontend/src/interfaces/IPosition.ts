@@ -3,4 +3,5 @@ export interface IPosition {
   posLeft: number;
   posX: number;
   posY: number;
+  name: string | null;
 }

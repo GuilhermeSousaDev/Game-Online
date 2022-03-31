@@ -1,5 +1,6 @@
 import React, { FC, useCallback, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { IPlayers } from "../../interfaces/IPlayers";
 import api from "../../services/Axios";
 import { Button, Container, LoginContainer } from "./style";
 
@@ -9,8 +10,14 @@ const Register: FC = () => {
 
   const handleRedirectRoom = useCallback(async () => {
     if (nickname) {
-      await api.post('game', { name: nickname });
+      const { data } = await api.post<IPlayers>("game", { name: nickname });
+
+      localStorage.setItem("user_id", data.id);
+
       navigate("/game");
+
+      // eslint-disable-next-line no-restricted-globals
+      location.reload();
     }
   }, [nickname, navigate]);
 

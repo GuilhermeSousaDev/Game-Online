@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import { IPosition } from "../../interfaces/IPosition";
 
-const Player: FC<IPosition> = ({ posLeft, posRight, posX, posY }) => {
+const Player: FC<IPosition> = ({ posLeft, posRight, posX, posY, name }) => {
   return (
     <div
       style={{
@@ -15,7 +15,7 @@ const Player: FC<IPosition> = ({ posLeft, posRight, posX, posY }) => {
         top: posY,
         bottom: posX,
       }}
-    ></div>
+    >{ name }</div>
   );
 };
 
