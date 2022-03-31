@@ -1,14 +1,15 @@
 import React, { FC, useCallback, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import api from "../../services/Axios";
 import { Button, Container, LoginContainer } from "./style";
 
 const Register: FC = () => {
   const navigate = useNavigate();
   const [nickname, setNickname] = useState<string>("");
 
-  const handleRedirectRoom = useCallback(() => {
+  const handleRedirectRoom = useCallback(async () => {
     if (nickname) {
-      localStorage.setItem("nickname", nickname);
+      await api.post('game', { name: nickname });
       navigate("/game");
     }
   }, [nickname, navigate]);

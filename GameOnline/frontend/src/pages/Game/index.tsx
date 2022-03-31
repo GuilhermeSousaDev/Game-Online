@@ -20,7 +20,16 @@ const Game: FC = () => {
   return (
     <Container>
       <GameContainer>
-        {players ? players.map((_) => <Player />) : ""}
+        {players
+          ? players.map(({ posLeft, posRight, posX, posY }) => (
+              <Player
+                posLeft={posLeft}
+                posRight={posRight}
+                posX={posX}
+                posY={posY}
+              />
+            ))
+          : ""}
         {localStorage.getItem("nickname")}
       </GameContainer>
     </Container>
