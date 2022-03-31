@@ -11,10 +11,6 @@ gameRouter.post(
   "/",
   celebrate({
     [Segments.BODY]: {
-      posLeft: Joi.number().required(),
-      posRight: Joi.number().required(),
-      posX: Joi.number().required(),
-      posY: Joi.number().required(),
       name: Joi.string().required(),
     },
   }),
