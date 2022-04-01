@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState } from "react";
+import React, { FC, useEffect, useState, useCallback } from "react";
 import { useContext } from "react";
 import Player from "../../components/Player";
 import { IPlayers } from "../../interfaces/IPlayers";
@@ -8,10 +8,44 @@ import { Container, GameContainer } from "./style";
 
 const Game: FC = () => {
   const { userId } = useContext(AuthContext);
-  
+
   const [players, setPlayers] = useState<IPlayers[]>();
+  const [keys] = useState<string[]>(["w", "a", "s", "d"]);
+
+  const handleMove = useCallback(
+    (key) => {
+      keys.map((k) => {
+        if (key === k) {
+          switch (key) {
+            case "w":
+              const player = players?.filter((p) => p.id === userId) as
+                | IPlayers
+                | undefined;
+
+              console.log(player);
+              break;
+            case "a":
+              console.log("a");
+              break;
+            case "s":
+              console.log("s");
+              break;
+            case "d":
+              console.log("d");
+              break;
+            default:
+              console.log("n");
+              break;
+          }
+        }
+      });
+    },
+    [keys, players, userId]
+  );
 
   useEffect(() => {
+    window.addEventListener("keydown", (e) => handleMove(e.key));
+
     (async () => {
       if (!players) {
         const { data } = await api.get("game");
@@ -19,7 +53,7 @@ const Game: FC = () => {
         setPlayers(data);
       }
     })();
-  }, [players]);
+  }, [players, handleMove]);
 
   return (
     <Container>
