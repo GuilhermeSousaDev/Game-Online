@@ -90,7 +90,7 @@ const Game: FC = () => {
 
       setPlayers(data);
 
-      setInterval(() => game, 1000);
+      setTimeout(() => game, 1000);
     }
   }
 
